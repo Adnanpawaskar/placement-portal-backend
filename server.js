@@ -78,8 +78,8 @@ mongoose.connect(MONGO_URI)
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 Server running on port ${PORT}`);
       try {
-        const { startReminderCron } = require('./services/reminderCron');
-        startReminderCron();
+        const { startReminderCron } = require('./reminderCron');
+startReminderCron();
       } catch (e) {
         console.warn('⚠️ Could not start cron:', e.message);
       }
