@@ -1,0 +1,7 @@
+node_modules/
+.env
+uploads/resumes/*.pdf
+uploads/resumes/*.doc
+uploads/resumes/*.docx
+*.log
+.DS_Store
