@@ -37,14 +37,14 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/students', require('./routes/studentRoutes'));
-app.use('/api/jobs', require('./routes/jobRoutes'));
-app.use('/api/applications', require('./routes/applicationRoutes'));
-app.use('/api/admin', require('./routes/adminRoutes'));
-app.use('/api/notifications', require('./routes/notificationRoutes'));
-app.use('/api/reports', require('./routes/reportRoutes'));
-app.use('/api/internships', require('./routes/internshipRoutes'));
+app.use('/api/auth', require('./authRoutes'));
+app.use('/api/students', require('./studentRoutes'));
+app.use('/api/jobs', require('./jobRoutes'));
+app.use('/api/applications', require('./applicationRoutes'));
+app.use('/api/admin', require('./adminRoutes'));
+app.use('/api/notifications', require('./notificationRoutes'));
+app.use('/api/reports', require('./reportRoutes'));
+app.use('/api/internships', require('./internshipRoutes'));
 
 // Health check
 app.get('/', (req, res) => res.json({ status: 'OK', message: 'Placement Portal API v2.0 🎓' }));
