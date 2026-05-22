@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getDashboardStats, createAdmin, createRecruiter, toggleStudentStatus, downloadAllResumes, downloadSelectiveResumes } = require('../controllers/adminController');
-const { protect, adminOnly } = require('../middleware/auth');
+const { getDashboardStats, createAdmin, createRecruiter, toggleStudentStatus, downloadAllResumes, downloadSelectiveResumes } = require('./controllers/adminController');
+const { protect, adminOnly } = require('./middleware/auth');
 
 router.get('/dashboard', protect, adminOnly, getDashboardStats);
 router.post('/create-admin', protect, adminOnly, createAdmin);

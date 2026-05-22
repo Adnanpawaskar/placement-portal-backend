@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getJobs, getJobById, createJob, updateJob, deleteJob, getJobApplicants, aiScreenResume, aiScreenAll } = require('../controllers/jobController');
-const { protect, adminOnly } = require('../middleware/auth');
+const { getJobs, getJobById, createJob, updateJob, deleteJob, getJobApplicants, aiScreenResume, aiScreenAll } = require('./controllers/jobController');
+const { protect, adminOnly } = require('./middleware/auth');
 
 router.get('/', protect, getJobs);
 router.get('/:id', protect, getJobById);

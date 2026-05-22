@@ -1,12 +1,12 @@
-const Application = require('../models/Application');
-const Job = require('../models/Job');
-const InternshipApplication = require('../models/InternshipApplication');
-const Student = require('../models/Student');
-const Notification = require('../models/Notification');
+const Application = require('./Application');
+const Job = require('./Job');
+const InternshipApplication = require('./InternshipApplication');
+const Student = require('./Student');
+const Notification = require('./Notification');
 const {
   notifyNewApplication,
   notifyApplicationStatusUpdate,
-} = require('../services/notificationService');
+} = require('./notificationService');
 
 // @desc  Apply for a job
 // @route POST /api/applications/:jobId/apply
@@ -153,7 +153,7 @@ const getAllApplications = async (req, res) => {
       const studentQuery = {};
       if (course) studentQuery.course = course;
       if (search) {
-        const users = await require('../models/User').find({
+        const users = await require('./User').find({
           $or: [
             { name: { $regex: search, $options: 'i' } },
             { email: { $regex: search, $options: 'i' } }

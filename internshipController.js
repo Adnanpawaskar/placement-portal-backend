@@ -1,7 +1,7 @@
-const Internship = require('../models/Internship');
-const InternshipApplication = require('../models/InternshipApplication');
-const Student = require('../models/Student');
-const User = require('../models/User');
+const Internship = require('./Internship');
+const InternshipApplication = require('./InternshipApplication');
+const Student = require('./Student');
+const User = require('./User');
 
 // GET all internships
 const getInternships = async (req, res) => {

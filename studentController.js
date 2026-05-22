@@ -1,10 +1,10 @@
-const Student = require('../models/Student');
-const User = require('../models/User');
+const Student = require('./Student');
+const User = require('./User');
 const path = require('path');
 const fs = require('fs');
-const { notifyStudentPlaced } = require('../services/notificationService');
-const Application = require('../models/Application');
-const { getGeneratedJoiningLetter, shouldGenerateJoiningLetter } = require('../utils/studentDocuments');
+const { notifyStudentPlaced } = require('./notificationService');
+const Application = require('./Application');
+const { getGeneratedJoiningLetter, shouldGenerateJoiningLetter } = require('./studentDocuments');
 
 function isSampleResumePlaceholder(document) {
   const filename = String(document?.filename || document?.path || '').toLowerCase();
@@ -70,7 +70,7 @@ const uploadResume = async (req, res) => {
     const student = await Student.findOne({ user: req.user._id });
     if (!student) return res.status(404).json({ success: false, message: 'Student profile not found' });
     if (student.resume && student.resume.path) {
-      const oldPath = path.join(__dirname, '..', student.resume.path);
+      const oldPath = path.join(__dirname, student.resume.path);
       if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
     student.resume = {
@@ -97,7 +97,7 @@ const uploadStudentResume = async (req, res) => {
     const student = await Student.findById(req.params.id);
     if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
     if (student.resume?.path) {
-      const oldPath = path.join(__dirname, '..', student.resume.path);
+      const oldPath = path.join(__dirname, student.resume.path);
       if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
     student.resume = {
@@ -124,7 +124,7 @@ const uploadJoiningLetter = async (req, res) => {
     const student = await Student.findById(req.params.id);
     if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
     if (student.joiningLetter?.path) {
-      const oldPath = path.join(__dirname, '..', student.joiningLetter.path);
+      const oldPath = path.join(__dirname, student.joiningLetter.path);
       if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
     student.joiningLetter = {
@@ -145,7 +145,7 @@ const uploadMyJoiningLetter = async (req, res) => {
     const student = await Student.findOne({ user: req.user._id });
     if (!student) return res.status(404).json({ success: false, message: 'Student profile not found' });
     if (student.joiningLetter?.path) {
-      const oldPath = path.join(__dirname, '..', student.joiningLetter.path);
+      const oldPath = path.join(__dirname, student.joiningLetter.path);
       if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
     student.joiningLetter = {

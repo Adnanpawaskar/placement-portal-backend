@@ -1,8 +1,8 @@
-const Job = require('../models/Job');
-const Application = require('../models/Application');
-const Student = require('../models/Student');
-const { notifyNewJobOrInternship } = require('../services/notificationService');
-const { extractResumeText, screenResume } = require('../services/aiResumeScreener');
+const Job = require('./Job');
+const Application = require('./Application');
+const Student = require('./Student');
+const { notifyNewJobOrInternship } = require('./notificationService');
+const { extractResumeText, screenResume } = require('./aiResumeScreener');
 const path = require('path');
 
 const getJobs = async (req, res) => {

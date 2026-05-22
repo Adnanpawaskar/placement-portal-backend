@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { sendNotification, sendWhatsAppMessage, sendBulkWhatsAppMessage, updateNotification, deleteNotification, getMyNotifications, markAsRead, getAllNotifications } = require('../controllers/notificationController');
-const { protect, adminOnly } = require('../middleware/auth');
+const { sendNotification, sendWhatsAppMessage, sendBulkWhatsAppMessage, updateNotification, deleteNotification, getMyNotifications, markAsRead, getAllNotifications } = require('./controllers/notificationController');
+const { protect, adminOnly } = require('./middleware/auth');
 
 router.post('/', protect, adminOnly, sendNotification);
 router.post('/whatsapp', protect, adminOnly, sendWhatsAppMessage);

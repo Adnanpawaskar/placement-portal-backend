@@ -11,8 +11,8 @@ const {
   forgotPassword,
   verifyResetOtp,
   resetPassword
-} = require('../controllers/authController');
-const { protect } = require('../middleware/auth');
+} = require('./controllers/authController');
+const { protect } = require('./middleware/auth');
 
 router.post('/send-otp', sendRegistrationOtp);
 router.post('/register', register);

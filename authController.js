@@ -1,8 +1,8 @@
-const User = require('../models/User');
-const Student = require('../models/Student');
+const User = require('./User');
+const Student = require('./Student');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const { sendOtpEmail } = require('../services/notificationService');
+const { sendOtpEmail } = require('./notificationService');
 
 const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET || 'secret', { expiresIn: process.env.JWT_EXPIRE || '7d' });
 const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();

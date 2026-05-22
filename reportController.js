@@ -1,5 +1,5 @@
-const Student = require('../models/Student');
-const Application = require('../models/Application');
+const Student = require('./Student');
+const Application = require('./Application');
 
 // @desc  Get placement report
 // @route GET /api/reports/placement

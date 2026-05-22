@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getPlacementReport, getApplicationReport, exportPlacedCSV, exportAllStudentsCSV, exportApplicationsCSV, getPublicStats } = require('../controllers/reportController');
-const { protect, adminOnly } = require('../middleware/auth');
+const { getPlacementReport, getApplicationReport, exportPlacedCSV, exportAllStudentsCSV, exportApplicationsCSV, getPublicStats } = require('./controllers/reportController');
+const { protect, adminOnly } = require('./middleware/auth');
 
 router.get('/public-stats', getPublicStats);  // no auth - for login page
 router.get('/placement', protect, adminOnly, getPlacementReport);

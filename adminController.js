@@ -1,8 +1,8 @@
-const User = require('../models/User');
-const Student = require('../models/Student');
-const Job = require('../models/Job');
-const Internship = require('../models/Internship');
-const Application = require('../models/Application');
+const User = require('./User');
+const Student = require('./Student');
+const Job = require('./Job');
+const Internship = require('./Internship');
+const Application = require('./Application');
 const archiver = require('archiver');
 const path = require('path');
 const fs = require('fs');
@@ -133,7 +133,7 @@ const downloadAllResumes = async (req, res) => {
     }
 
     const students = await Student.find(query).populate('user', 'name email');
-    const uploadsDir = path.join(__dirname, '..', 'uploads', 'resumes');
+    const uploadsDir = path.join(__dirname, 'uploads', 'resumes');
     const files = [];
     for (const student of students) {
       const filePath = path.join(uploadsDir, student.resume.filename);
@@ -171,7 +171,7 @@ const downloadSelectiveResumes = async (req, res) => {
       'resume.filename': { $exists: true, $ne: null }
     }).populate('user', 'name email');
 
-    const uploadsDir = path.join(__dirname, '..', 'uploads', 'resumes');
+    const uploadsDir = path.join(__dirname, 'uploads', 'resumes');
     const files = [];
     for (const student of students) {
       const filePath = path.join(uploadsDir, student.resume.filename);

@@ -1,7 +1,7 @@
-const Notification = require('../models/Notification');
-const User = require('../models/User');
-const Student = require('../models/Student');
-const { sendBulkNotification, sendWhatsApp } = require('../services/notificationService');
+const Notification = require('./Notification');
+const User = require('./User');
+const Student = require('./Student');
+const { sendBulkNotification, sendWhatsApp } = require('./notificationService');
 
 const resolveStudentRecipients = async ({ targetAll, targetCourse, targetCourses, recipientIds, studentIds }) => {
   const selectedCourses = Array.isArray(targetCourses)

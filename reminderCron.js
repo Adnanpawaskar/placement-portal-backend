@@ -1,6 +1,6 @@
 const cron = require('node-cron');
-const Application = require('../models/Application');
-const Student = require('../models/Student');
+const Application = require('./Application');
+const Student = require('./Student');
 const { sendApplicationReminder } = require('./notificationService');
 
 /**

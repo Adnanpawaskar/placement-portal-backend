@@ -1,4 +1,4 @@
-const Student = require('../models/Student');
+const Student = require('./Student');
 
 const generateAIResume = async (req, res) => {
   try {

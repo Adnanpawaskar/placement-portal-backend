@@ -3,8 +3,8 @@ const router = express.Router();
 const {
   getInternships, getInternshipById, createInternship, updateInternship, deleteInternship,
   getInternshipApplicants, applyInternship, getMyInternshipApplications, updateApplicationStatus
-} = require('../controllers/internshipController');
-const { protect, adminOnly, studentOnly } = require('../middleware/auth');
+} = require('./controllers/internshipController');
+const { protect, adminOnly, studentOnly } = require('./middleware/auth');
 
 router.get('/', protect, getInternships);
 router.get('/my-applications', protect, studentOnly, getMyInternshipApplications);
