@@ -9,10 +9,10 @@ const WHATSAPP_ACCESS_TOKEN = cleanEnv(process.env.WHATSAPP_ACCESS_TOKEN);
 const WHATSAPP_PHONE_NUMBER_ID = cleanEnv(process.env.WHATSAPP_PHONE_NUMBER_ID);
 
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.EMAIL_PORT, 10) || 587,
+  host: 'smtp.gmail.com',
+  port: 587,
   secure: false,
-  auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+  auth: { user: 'adnanpawaskar163@gmail.com', pass: 'nncodsyhjrulkzqu' },
 });
 
 function cleanEnv(value) {
@@ -59,14 +59,14 @@ function wrap(content) {
 }
 
 async function sendEmail(to, subject, html) {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !to) {
-    console.warn('Email credentials or recipient missing - skipping', to);
+  if (!to) {
+    console.warn('Email recipient missing - skipping', to);
     return { sent: false, skipped: true };
   }
 
   try {
     await transporter.sendMail({
-      from: `"${PORTAL_NAME}" <${process.env.EMAIL_USER}>`,
+      from: `"${PORTAL_NAME}" <adnanpawaskar163@gmail.com>`,
       to,
       subject,
       html,
@@ -174,6 +174,7 @@ async function notifyApplicationStatusUpdate({ studentName, studentEmail, studen
   if (note) wa += `\nNote: ${note}`;
   if (interviewDate) wa += `\n\nInterview: ${interviewDate}${interviewTime ? ` at ${interviewTime}` : ''}${interviewVenue ? `\nVenue: ${interviewVenue}` : ''}`;
   wa += '\n\nLog in to the portal for details.';
+  await sendEmail(studentEmail, `Application Update - ${company} (${newStatus})`, html);
   await sendWhatsApp(studentPhone, wa);
   if (ADMIN_EMAIL) await sendEmail(ADMIN_EMAIL, `App Update: ${studentName} -> ${newStatus}`, wrap(`<p><strong>${studentName}</strong> - <em>${jobTitle} @ ${company}</em><br>New status: <strong>${newStatus}</strong>${note ? '<br>Note: ' + note : ''}</p>`));
   if (ADMIN_WHATSAPP) await sendWhatsApp(ADMIN_WHATSAPP, `*${PORTAL_NAME}*\n\n${studentName} -> ${newStatus}\n${jobTitle} @ ${company}`);
